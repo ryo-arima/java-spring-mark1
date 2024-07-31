@@ -2,10 +2,12 @@ build:
 	mvn clean install
 
 run-client:
-	./tool/script.sh build_client
-	./tool/script.sh client
+	./tool/build-tool.sh
+	./tool/bin build_client
+	./tool/bin client
 
 run-server:
-	./tool/script.sh build_server
-	./tool/script.sh server
+	./tool/build-tool.sh
+	./tool/bin build_server
+	./tool/bin server
 
