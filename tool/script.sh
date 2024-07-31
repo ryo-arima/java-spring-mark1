@@ -20,4 +20,12 @@ function build_server(){
     mvn clean package -DmainClass=cmd.Server -DfinalName=server
 }
 
+function client(){
+    java -classpath ./target/client.jar cmd.Client
+}
+
+function server(){
+    java -jar ./target/server.jar
+}
+
 $COMMAND
