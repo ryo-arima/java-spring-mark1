@@ -1,5 +1,11 @@
 build:
 	mvn clean install
 
-run:
-	./mvnw spring-boot:run
+run-client:
+	./tool/script.sh build_client
+	./tool/script.sh client
+
+run-server:
+	./tool/script.sh build_server
+	./tool/script.sh server
+
