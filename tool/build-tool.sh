@@ -1,0 +1,1 @@
+cat tool/script.sh| sed -r 's/^[[:space:]]*|[[:space:]]*$//g' > tool/bin
