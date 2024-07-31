@@ -13,11 +13,13 @@ function set_server_pom_xml(){
 function build_client(){
     set_client_pom_xml
     mvn clean package -DmainClass=cmd.Client -DfinalName=client
+    rm pom.xml
 }
 
 function build_server(){
     set_server_pom_xml
     mvn clean package -DmainClass=cmd.Server -DfinalName=server
+    rm pom.xml
 }
 
 function client(){
