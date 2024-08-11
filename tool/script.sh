@@ -23,7 +23,7 @@ function build_server(){
 }
 
 function client(){
-    java -classpath ./target/client.jar cmd.Client
+    java -classpath "./target/client.jar:target/vendor/*" cmd.Client
 }
 
 function server(){
