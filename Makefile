@@ -1,3 +1,7 @@
+s:
+	git add .
+	commit-emoji
+	git push origin dev/skeleton
 build:
 	mvn clean install
 
