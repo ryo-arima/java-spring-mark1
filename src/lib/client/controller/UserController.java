@@ -1,6 +1,7 @@
 package lib.client.controller;
 
 import lib.client.usecase.*;
+import lib.config.*;
 
 interface UserControllerInterface {
     public void GetUsers();   
@@ -10,7 +11,7 @@ interface UserControllerInterface {
 }
 
 public class UserController implements UserControllerInterface{
-    UserUsecase userUsecase;
+    public UserUsecase userUsecase;
     
     public void GetUsers(){
         this.userUsecase.GetUsers();

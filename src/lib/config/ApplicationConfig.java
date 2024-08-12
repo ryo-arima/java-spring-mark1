@@ -3,10 +3,18 @@ package lib.config;
 import com.moandjiezana.toml.Toml;
 import java.io.File;
 
+
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
 public class ApplicationConfig{
     public AppToml toml;
+    public TemplateEngine appClientTemplateEngine;
+
     public ApplicationConfig(String[] args) {
         this.NewAppToml(args);
+        this.NewAppClientTemplate(args);
     }
     void NewAppToml(String[] args) {
         // TOMLファイルのパスを指定
@@ -31,6 +39,18 @@ public class ApplicationConfig{
         //System.out.println("Password: " + password);
         //System.out.println("Owner Name: " + ownerName);
         //System.out.println("DOB: " + dob);
+    }
+    void NewAppClientTemplate(String[] args) {
+        // テンプレートリゾルバの設定
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode("TEXT");
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setPrefix("template/");
+        templateResolver.setSuffix(".template");
+
+        // テンプレートエンジンの設定
+        this.appClientTemplateEngine = new TemplateEngine();
+        this.appClientTemplateEngine.setTemplateResolver(templateResolver);
     }
 }
 

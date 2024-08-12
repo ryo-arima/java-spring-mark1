@@ -12,7 +12,7 @@ interface UserRepositoryInterface {
 }
 
 public class UserRepository implements UserRepositoryInterface{
-    ApplicationConfig applicationConfig;
+    public ApplicationConfig applicationConfig;
     
     public UserRespose GetUsers(UserRequest userRequest){
         System.out.println("get users");
