@@ -49,16 +49,16 @@ function build_server(){
 }
 
 function admin_client(){
-    java -classpath "./build/admin/adminClient.jar:build/admin/vendor/*" cmd.AdminClient
+    java -classpath "./build/admin/adminClient.jar:build/admin/vendor/*:build/admin" cmd.AdminClient
 }
 
 
 function app_client(){
-    java -classpath "./build/app/appClient.jar:build/app/vendor/*" cmd.AppClient
+    java -classpath "./build/app/appClient.jar:build/app/vendor/*:build/app" cmd.AppClient
 }
 
 function anonymous_client(){
-    java -classpath "./build/anonymous/anonymousClient.jar:build/app/vendor/*" cmd.AnonymousClient
+    java -classpath "./build/anonymous/anonymousClient.jar:build/anonymous/vendor/*:build/anonymous" cmd.AnonymousClient
 }
 
 function client(){

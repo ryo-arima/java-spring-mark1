@@ -51,6 +51,11 @@
 			<artifactId>toml4j</artifactId>
 			<version>0.7.2</version>
 		  </dependency>
+		  <dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.1.2.RELEASE</version>
+		  </dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>${basedir}/src</sourceDirectory>
@@ -74,7 +79,7 @@
 				<version>3.2.0</version>
 				<executions>
 					<execution>
-						<id>copy-resources</id>
+						<id>copy-resources-vendor</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
@@ -85,6 +90,24 @@
 								<resource>
 									<directory>${project.basedir}/src/vendor</directory>
 									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-template</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/template</outputDirectory> <!-- 出力ディレクトリ -->
+							<resources>
+								<resource>
+									<directory>src/lib/client/template</directory> <!-- コピー元 -->
+									<includes>
+										<include>**/*</include> <!-- 全ファイルを含める -->
+									</includes>
 								</resource>
 							</resources>
 						</configuration>

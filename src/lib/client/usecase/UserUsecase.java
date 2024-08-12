@@ -2,6 +2,9 @@ package lib.client.usecase;
 
 import lib.client.repository.UserRepository;
 import lib.entity.request.UserRequest;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 interface UserUsecaseInterface {
     public void GetUsers();
@@ -16,6 +19,26 @@ public class UserUsecase implements UserUsecaseInterface{
     public void GetUsers(){
         UserRequest userRequest = new UserRequest();
         this.userRepository.GetUsers(userRequest);
+        // テンプレートリゾルバの設定
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode("TEXT");
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setPrefix("template/");
+        templateResolver.setSuffix(".template");
+
+        // テンプレートエンジンの設定
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        // コンテキストにデータをセット
+        Context context = new Context();
+        context.setVariable("name", "Thymeleaf");
+
+        // テンプレートを処理
+        String output = templateEngine.process("get_users", context);
+
+        // 結果を出力
+        System.out.println(output);
     }
 
     public void CreateUser(){
