@@ -1,10 +1,6 @@
-package lib.entity.request;
+package lib.entity.model;
 
-public class UserRequest {
-    User user;
-}
-
-class User {
+public class Users {
     int id;
     String uuid;
     String createdAt;

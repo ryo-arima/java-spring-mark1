@@ -2,76 +2,84 @@ package lib.config;
 
 import com.moandjiezana.toml.Toml;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
+import javax.xml.crypto.Data;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 public class ApplicationConfig{
-    public AppToml toml;
+    public AppToml appToml;
     public TemplateEngine appClientTemplateEngine;
+    public Connection dbConnection;
 
     public ApplicationConfig(String[] args) {
         this.NewAppToml(args);
+        try {
+            this.NewConnection(this.appToml.database);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         this.NewAppClientTemplate(args);
     }
     void NewAppToml(String[] args) {
-        // TOMLファイルのパスを指定
         File file = new File("etc/app.toml");
 
-        // TOMLファイルを読み込む
         Toml toml = new Toml().read(file);
 
-        //// データを取得
-        //String server = toml.getString("database.server");
-        //long port = toml.getLong("database.port");
-        //String user = toml.getString("database.user");
-        //String password = toml.getString("database.password");
+        this.appToml = new AppToml();
+        this.appToml.database = new Database(
+            toml.getString("database.host"),
+            toml.getLong("database.port"),
+            toml.getString("database.user"),
+            toml.getString("database.pass"),
+            toml.getString("database.db")
+        );
 
-        //String ownerName = toml.getString("owner.name");
-        //String dob = toml.getString("owner.dob");
-
-        //// 結果を出力
-        //System.out.println("Server: " + server);
-        //System.out.println("Port: " + port);
-        //System.out.println("User: " + user);
-        //System.out.println("Password: " + password);
-        //System.out.println("Owner Name: " + ownerName);
-        //System.out.println("DOB: " + dob);
+        System.out.println(this.appToml.database.host);
+        System.out.println(this.appToml.database.port);
+        System.out.println(this.appToml.database.user);
+        System.out.println(this.appToml.database.pass);
+        System.out.println(this.appToml.database.db);
     }
     void NewAppClientTemplate(String[] args) {
-        // テンプレートリゾルバの設定
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setTemplateMode("TEXT");
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setPrefix("template/");
         templateResolver.setSuffix(".template");
 
-        // テンプレートエンジンの設定
         this.appClientTemplateEngine = new TemplateEngine();
         this.appClientTemplateEngine.setTemplateResolver(templateResolver);
+    }
+    void NewConnection(Database database) throws SQLException {
+        String URL = "jdbc:mysql://" + database.host + ":" + database.port + "/" + database.db;
+        String USER = database.user;
+        String PASSWORD = database.pass;
+        this.dbConnection = DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
 
 class AppToml {
-    private String name;
-    private int age;
+   Database database; 
+}
 
-    // ゲッターとセッター
-    public String getName() {
-        return name;
-    }
+class Database {
+    final String host;
+    final long port;
+    final String user;
+    final String pass;
+    final String db;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    Database(String host, long port, String user, String pass, String db) {
+        this.host = host;
+        this.port = port;
+        this.user = user;
+        this.pass = pass;
+        this.db = db;
     }
 }

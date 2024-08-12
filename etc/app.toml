@@ -1,9 +1,6 @@
 [database]
-server = "192.168.1.1"
+host = "127.0.0.1"
 port = 3306
 user = "admin"
-password = "secret"
-
-[owner]
-name = "John Doe"
-dob = 1979-05-27T07:32:00Z
+pass = "secret"
+db = "app"
