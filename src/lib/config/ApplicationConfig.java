@@ -11,7 +11,9 @@ import javax.xml.crypto.Data;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class ApplicationConfig{
     public AppToml appToml;
     public TemplateEngine appClientTemplateEngine;
@@ -26,6 +28,7 @@ public class ApplicationConfig{
         }
         this.NewAppClientTemplate(args);
     }
+
     void NewAppToml(String[] args) {
         File file = new File("etc/app.toml");
 

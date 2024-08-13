@@ -68,7 +68,7 @@ function client(){
 }
 
 function server(){
-    java -jar ./target/server.jar
+    java -classpath "./build/server/server.jar:build/server/vendor/*:build/server" cmd.Server
 }
 
 $COMMAND
