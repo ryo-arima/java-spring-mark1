@@ -5,33 +5,33 @@ import lib.entity.request.*;
 import lib.entity.response.*;
 
 interface UserRepositoryInterface {
-    UserRespose GetUsers(UserRequest userRequest);
-    UserRespose CreateUser(UserRequest userRequest);
-    UserRespose UpdateUser(UserRequest userRequest);
-    UserRespose DeleteUser(UserRequest userRequest); 
+    UserResponse GetUsers(UserRequest userRequest);
+    UserResponse CreateUser(UserRequest userRequest);
+    UserResponse UpdateUser(UserRequest userRequest);
+    UserResponse DeleteUser(UserRequest userRequest); 
 }
 
 public class UserRepository implements UserRepositoryInterface{
-    ApplicationConfig applicationConfig;
+    public ApplicationConfig applicationConfig;
     
-    public UserRespose GetUsers(UserRequest userRequest){
+    public UserResponse GetUsers(UserRequest userRequest){
         System.out.println("get users");
-        return new UserRespose();
+        return new UserResponse("GET_USERS_FAILED", "success", null);
     }
 
-    public UserRespose CreateUser(UserRequest userRequest){
+    public UserResponse CreateUser(UserRequest userRequest){
         System.out.println("create user");
-        return new UserRespose();
+        return new UserResponse("CREATE_USER_FAILED", "success", null);
     }
 
-    public UserRespose UpdateUser(UserRequest userRequest){
+    public UserResponse UpdateUser(UserRequest userRequest){
         System.out.println("update user");
-        return new UserRespose();
+        return new UserResponse("UPDATE_USER_FAILED", "success", null);
     }
 
-    public UserRespose DeleteUser(UserRequest userRequest){
+    public UserResponse DeleteUser(UserRequest userRequest){
         System.out.println("delete user");
-        return new UserRespose();
+        return new UserResponse("DELETE_USER_FAILED", "success", null);
     }
 
     public UserRepository(ApplicationConfig applicationConfig) {

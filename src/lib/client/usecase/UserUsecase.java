@@ -2,6 +2,8 @@ package lib.client.usecase;
 
 import lib.client.repository.UserRepository;
 import lib.entity.request.UserRequest;
+import org.thymeleaf.context.Context;
+import lib.config.*;
 
 interface UserUsecaseInterface {
     public void GetUsers();
@@ -11,11 +13,15 @@ interface UserUsecaseInterface {
 }
 
 public class UserUsecase implements UserUsecaseInterface{
-    private UserRepository userRepository;
+    public UserRepository userRepository;
     
     public void GetUsers(){
         UserRequest userRequest = new UserRequest();
         this.userRepository.GetUsers(userRequest);
+        Context context = new Context();
+        context.setVariable("name", "Thymeleaf");
+        String output = this.userRepository.applicationConfig.appClientTemplateEngine.process("get_users", context);
+        System.out.println(output);
     }
 
     public void CreateUser(){

@@ -1,31 +1,25 @@
 package lib.client.command;
 
-import lib.config.ApplicationConfig;
-import lib.client.command.ResourceCmd;
+import lib.client.command.get.GetUsersCmd;
+import lib.client.command.create.CreateUserCmd;
+import lib.client.command.update.UpdateUserCmd;
+import lib.client.command.delete.DeleteUserCmd;
+import lib.client.command.bootstrap.BootstrapUserCmd;
 
-
-public class BaseCmd {
-    BaseCmd(String[] args) {
-        if (args.length > 0){
-            String operationCmd = args[0];
-            switch (operationCmd) {
-                case "get":
-                    new GetCmd(args);
-                    break;
-                case "create":
-                    new CreateCmd(args);
-                    break;
-                case "update":
-                    new UpdateCmd(args);
-                    break;
-                case "delete":
-                    new DeleteCmd(args);
+class BootstrapCmd {
+    BootstrapCmd(String[] args) {
+        if (args.length > 1){
+            String targetResource = args[1];
+            switch (targetResource) {
+                case "user":
+                    ResourceCmd resourceCmd = new ResourceCmd();
+                    resourceCmd.BootstrapUserCmdCall(args);
                     break;
                 default:
                     break;
             }
         } else {
-            System.out.println("get,create,update,delete...");
+            System.out.println("user");
         }
     }
 }
