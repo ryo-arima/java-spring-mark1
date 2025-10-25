@@ -1,9 +1,9 @@
 package cmd;
 
-import lib.client.command.AppCmd;
+import lib.client.command.App;
 
 public class AppClient {
     public static void main(String[] args) {
-        AppCmd.Execute(args);
+        App.Execute(args);
     }
 }

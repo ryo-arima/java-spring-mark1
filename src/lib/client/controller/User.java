@@ -10,8 +10,8 @@ interface UserControllerInterface {
     public void DeleteUser();
 }
 
-public class UserController implements UserControllerInterface{
-    public UserUsecase userUsecase;
+public class User {
+    public lib.client.usecase.User userUsecase;
     
     public void GetUsers(){
         this.userUsecase.GetUsers();
@@ -29,7 +29,7 @@ public class UserController implements UserControllerInterface{
         this.userUsecase.DeleteUser();
     }
 
-    public UserController(UserUsecase userUsecase) {
+    public User(lib.client.usecase.User userUsecase) {
         this.userUsecase = userUsecase;
     }
 }

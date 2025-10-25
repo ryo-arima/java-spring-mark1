@@ -1,23 +1,26 @@
 package lib.client.command;
 
-import lib.config.ApplicationConfig;
+import lib.config.Config;
 
-public class AppCmd {
+public class Admin {
     public static void Execute(String[] args){
-        ApplicationConfig appConf = new ApplicationConfig(args);
-		AppCmd appCmd = new AppCmd(args);
+        Config appConf = new Config(args);
+		Admin adminCmd = new Admin(args);
     }
 	
-    AppCmd(String[] args) {
-        AppBaseCmd AppBaseCmd = new AppBaseCmd(args);
+    Admin(String[] args) {
+        AdminBaseCmd AdminBaseCmd = new AdminBaseCmd(args);
     }
 }
 
-class AppBaseCmd {
-    AppBaseCmd(String[] args) {
+class AdminBaseCmd {
+    AdminBaseCmd(String[] args) {
         if (args.length > 0){
             String operationCmd = args[0];
             switch (operationCmd) {
+                case "bootstrap":
+                    new BootstrapCmd(args);
+                    break;
                 case "get":
                     new GetCmd(args);
                     break;
@@ -38,4 +41,3 @@ class AppBaseCmd {
         }
     }
 }
-

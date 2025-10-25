@@ -1,10 +1,6 @@
 package lib.client.command;
 
-import lib.client.command.get.GetUsersCmd;
-import lib.client.command.create.CreateUserCmd;
-import lib.client.command.update.UpdateUserCmd;
-import lib.client.command.delete.DeleteUserCmd;
-import lib.client.command.bootstrap.BootstrapUserCmd;
+// Using fully qualified names to avoid conflicts
 
 class BootstrapCmd {
     BootstrapCmd(String[] args) {
@@ -12,7 +8,7 @@ class BootstrapCmd {
             String targetResource = args[1];
             switch (targetResource) {
                 case "user":
-                    ResourceCmd resourceCmd = new ResourceCmd();
+                    lib.client.command.Resource resourceCmd = new lib.client.command.Resource();
                     resourceCmd.BootstrapUserCmdCall(args);
                     break;
                 default:
@@ -30,7 +26,7 @@ class GetCmd {
             String targetResource = args[1];
             switch (targetResource) {
                 case "users":
-                    ResourceCmd resourceCmd = new ResourceCmd();
+                    lib.client.command.Resource resourceCmd = new lib.client.command.Resource();
                     resourceCmd.GetUsersCmdCall(args);
                     break;
                 default:
@@ -48,7 +44,7 @@ class CreateCmd {
             String targetResource = args[1];
             switch (targetResource) {
                 case "user":
-                    ResourceCmd resourceCmd = new ResourceCmd();
+                    lib.client.command.Resource resourceCmd = new lib.client.command.Resource();
                     resourceCmd.CreateUserCmdCall(args);
                     break;
                 default:
@@ -66,7 +62,7 @@ class UpdateCmd {
             String targetResource = args[1];
             switch (targetResource) {
                 case "user":
-                    ResourceCmd resourceCmd = new ResourceCmd();
+                    lib.client.command.Resource resourceCmd = new lib.client.command.Resource();
                     resourceCmd.UpdateUserCmdCall(args);
                     break;
                 default:
@@ -84,7 +80,7 @@ class DeleteCmd {
             String targetResource = args[1];
             switch (targetResource) {
                 case "user":
-                    ResourceCmd resourceCmd = new ResourceCmd();
+                    lib.client.command.Resource resourceCmd = new lib.client.command.Resource();
                     resourceCmd.DeleteUserCmdCall(args);
                     break;
                 default:

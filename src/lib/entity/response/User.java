@@ -1,14 +1,17 @@
 package lib.entity.response;
 
 import java.util.ArrayList;
-import lib.entity.model.User;
 
-public class UserResponse {
+public class User {
     private String message;
-    private String code; 
-    private ArrayList<User> users;
+    private int code; 
+    private ArrayList<lib.entity.model.User> users;
 
-    public UserResponse(String message, String code, ArrayList<User> users) {
+    public User() {
+        this.users = new ArrayList<>();
+    }
+
+    public User(String message, int code, ArrayList<lib.entity.model.User> users) {
         this.message = message;
         this.code = code;
         this.users = users;
@@ -18,19 +21,19 @@ public class UserResponse {
         return message;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<lib.entity.model.User> getUsers() {
         return users;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public void setUsers(ArrayList<User> users) {
+    public void setUsers(ArrayList<lib.entity.model.User> users) {
         this.users = users;
     }
 

@@ -1,18 +1,15 @@
-package lib.client.command.delete;
+package lib.client.command.create;
 
-import lib.config.ApplicationConfig;
-import lib.client.repository.UserRepository;
-import lib.client.usecase.UserUsecase;
-import lib.client.controller.UserController;
+import lib.config.Config;
 import org.apache.commons.cli.*;
 
-public class DeleteUserCmd{
-    public DeleteUserCmd(String[] args){
-        ApplicationConfig applicationConfig = new ApplicationConfig(args);
-        UserRepository userRepository = new UserRepository(applicationConfig);
-        UserUsecase userUsecase = new UserUsecase(userRepository);
-        UserController userController = new UserController(userUsecase);
-        userController.DeleteUser();
+public class User {
+    public User(String[] args){
+        Config applicationConfig = new Config(args);
+        lib.client.repository.User userRepository = new lib.client.repository.User(applicationConfig);
+        lib.client.usecase.User userUsecase = new lib.client.usecase.User(userRepository);
+        lib.client.controller.User userController = new lib.client.controller.User(userUsecase);
+        userController.CreateUser();
         Options options = new Options();
 
         // --help オプションを定義

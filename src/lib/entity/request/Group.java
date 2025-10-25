@@ -1,13 +1,10 @@
 package lib.entity.request;
 
-public class UserRequest {
-    public User user;
-}
-
-class User {
+public class Group {
     public int id;
     public String uuid;
+    public String name;
+    public String description;
     public String createdAt;
     public String updatedAt;
-    public String deletedAt;
 }

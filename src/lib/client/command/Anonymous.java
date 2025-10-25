@@ -1,15 +1,15 @@
 package lib.client.command;
 
-import lib.config.ApplicationConfig;
+import lib.config.Config;
 
-public class AnonymousCmd {
+public class Anonymous {
     public static void Execute(String[] args){
-        ApplicationConfig appConf = new ApplicationConfig(args);
-		AnonymousCmd anonymousCmd = new AnonymousCmd(args);
+        Config appConf = new Config(args);
+		Anonymous anonymousCmd = new Anonymous(args);
     }
 	
-    AnonymousCmd(String[] args) {
-        AnonymousBaseCmd AnonymousBaseCmd = new AnonymousBaseCmd(args);
+    public Anonymous(String[] args) {
+        // Constructor implementation
     }
 }
 

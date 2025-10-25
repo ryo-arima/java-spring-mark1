@@ -1,9 +1,6 @@
 package lib.client.usecase;
 
-import lib.client.repository.UserRepository;
-import lib.entity.request.UserRequest;
 import org.thymeleaf.context.Context;
-import lib.config.*;
 
 interface UserUsecaseInterface {
     public void GetUsers();
@@ -12,11 +9,11 @@ interface UserUsecaseInterface {
     public void DeleteUser();
 }
 
-public class UserUsecase implements UserUsecaseInterface{
-    public UserRepository userRepository;
+public class User implements UserUsecaseInterface{
+    public lib.client.repository.User userRepository;
     
     public void GetUsers(){
-        UserRequest userRequest = new UserRequest();
+        lib.entity.request.User userRequest = new lib.entity.request.User();
         this.userRepository.GetUsers(userRequest);
         Context context = new Context();
         context.setVariable("name", "Thymeleaf");
@@ -25,21 +22,21 @@ public class UserUsecase implements UserUsecaseInterface{
     }
 
     public void CreateUser(){
-        UserRequest userRequest = new UserRequest();
+        lib.entity.request.User userRequest = new lib.entity.request.User();
         this.userRepository.CreateUser(userRequest);
     }
 
     public void UpdateUser(){
-        UserRequest userRequest = new UserRequest();
+        lib.entity.request.User userRequest = new lib.entity.request.User();
         this.userRepository.UpdateUser(userRequest);
     }
 
     public void DeleteUser(){
-        UserRequest userRequest = new UserRequest();
+        lib.entity.request.User userRequest = new lib.entity.request.User();
         this.userRepository.DeleteUser(userRequest);
     }
 
-    public UserUsecase(UserRepository userRepository) {
+    public User(lib.client.repository.User userRepository) {
         this.userRepository = userRepository;
     }
 }

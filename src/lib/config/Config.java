@@ -14,12 +14,12 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ApplicationConfig{
+public class Config {
     public AppToml appToml;
     public TemplateEngine appClientTemplateEngine;
     public Connection dbConnection;
 
-    public ApplicationConfig(String[] args) {
+    public Config(String[] args) {
         this.NewAppToml(args);
         try {
             this.NewConnection(this.appToml.database);
